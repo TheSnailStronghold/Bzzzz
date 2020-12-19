@@ -1,20 +1,18 @@
 package org.bzzzzShop.models.beehive;
 
 import org.bzzzzShop.models.Goods;
-import org.bzzzzShop.models.beehive.components.BottomOfTheBeehive;
 import org.bzzzzShop.models.beehive.components.ComponentsOfTheBeehive;
-import org.bzzzzShop.models.beehive.components.RoofOfTheBeehive;
 
 import java.math.BigDecimal;
-import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/* Класс описывающий Улий*/
 public class Beehive extends Goods {
+    /* Что входит в улий и в каком кол.-ве */
     private List<Map.Entry<ComponentsOfTheBeehive, Integer>> componentsOfTheBeehives;
 
-
+    /* Конструкторы */
     public Beehive(String article, String name, BigDecimal price,
                    Map<String, String> description, int amount,
                    List<Map.Entry<ComponentsOfTheBeehive, Integer>> componentsOfTheBeehives) {

@@ -4,17 +4,20 @@ package org.bzzzzShop;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
 import org.bzzzzShop.models.beehive.components.*;
-import org.bzzzzShop.models.uniform.Uniform;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App {
     public static void main(String[] args) {
-        ComponentsOfTheBeehive roof =  new RoofOfTheBeehive(
+        /*Тестовая шляпа для проверки работы*/
+
+
+        ComponentsOfTheBeehive roof = new RoofOfTheBeehive(
                 "1321",
                 "Крыша ППУ Нижегородец на 6 рамок",
                 new BigDecimal(600.99).setScale(2, BigDecimal.ROUND_FLOOR),
@@ -99,6 +102,7 @@ public class App {
         );
         List<Goods> goods = new LinkedList<>(); // Все товары
         List<ComponentsOfTheBeehive> components = new LinkedList<>(); // все компоненты для улья
+
         components.add(roof);
         components.add(bottom);
         components.add(body);
@@ -106,30 +110,31 @@ public class App {
         components.add(storage);
 
         goods.add(new Beehive(
-                "1125",
-                "УЛЕЙ ППУ НИЖЕГОРОДЕЦ КОМПЛЕКТ 12 РАМОК 2 КОРПУСА ДАДАН+ 2 МАГАЗИНА",
-                new BigDecimal(6_010),
-                new String[][]{
-                        {"Описание",
-                                "Улей ППУ Нижегородец Комплект 12 рамок 2 корпуса Дадан+ 2 Магазина\n" +
-                                        "Комплект дадан двухкорпусный с двумя магазинами (Нижегородец)\n" +
-                                        "бла бла бла\n"}
-                },
-                100,
-                Stream.of(
-                        new AbstractMap.SimpleEntry<>(roof, 1),
-                        new AbstractMap.SimpleEntry<>(bottom, 1),
-                        new AbstractMap.SimpleEntry<>(storage, 2),
-                        new AbstractMap.SimpleEntry<>(body, 2))
-                        .collect(Collectors.toList())
+                        "1125",
+                        "УЛЕЙ ППУ НИЖЕГОРОДЕЦ КОМПЛЕКТ 12 РАМОК 2 КОРПУСА ДАДАН+ 2 МАГАЗИНА",
+                        new BigDecimal(6_010),
+                        new String[][]{
+                                {"Описание",
+                                        "Улей ППУ Нижегородец Комплект 12 рамок 2 корпуса Дадан+ 2 Магазина\n" +
+                                                "Комплект дадан двухкорпусный с двумя магазинами (Нижегородец)\n" +
+                                                "бла бла бла\n"}
+                        },
+                        100,
+                        Stream.of(
+                                new AbstractMap.SimpleEntry<>(roof, 1),
+                                new AbstractMap.SimpleEntry<>(bottom, 1),
+                                new AbstractMap.SimpleEntry<>(storage, 2),
+                                new AbstractMap.SimpleEntry<>(body, 2))
+                                .collect(Collectors.toList())
                 )
         );
         goods.addAll(components);
         goods.forEach(e ->
                 System.out.println(
                         e.toString() +
-                        "-----------------------------------------------------"
+                                "-----------------------------------------------------"
                 )
         );
+        /*!-Тестовая шляпа для проверки работы*/
     }
 }

@@ -6,9 +6,10 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class Uniform extends Goods {
-    private String size;
-    private String brand;
-    private String material;
+    private String size;        // размер
+    private String brand;       // брэнд
+    private String material;    // материал
+    /* Конструкторы */
     public Uniform(String article, String name, BigDecimal price,
                    Map<String, String> description, int amount,
                    String size, String brand, String material) {
@@ -26,8 +27,10 @@ public class Uniform extends Goods {
         this.material = material;
     }
 
+    /*Переделать бы эту шляпу*/
     @Override
     public String toString() {
+        /*TODO: сделать по-человечески*/
         return super.toString().replace("}",
                 "\nsize='" + size + '\'' +
                 ", brand='" + brand + '\'' +

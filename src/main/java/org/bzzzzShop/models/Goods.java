@@ -1,7 +1,6 @@
 package org.bzzzzShop.models;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,7 +14,8 @@ public abstract class Goods {
     /* для работы с денежными суммами использовать double
     является плохим тоном. Используют BigDecimal */
     private BigDecimal price;
-    private int amount;
+
+    private int amount; // кол.-во на складе товара
 
     public Goods(String article, String name, BigDecimal price, Map<String, String> description, int amount) {
         this.article = article;
@@ -33,7 +33,6 @@ public abstract class Goods {
                 .toMap(p-> p[0], p-> p[1]));
         this.amount = amount;
     }
-
 
     @Override
     public String toString() {

@@ -3,8 +3,10 @@ package org.bzzzzShop.models.beehive.components;
 import java.math.BigDecimal;
 import java.util.Map;
 
+/* Класс описывающий Крышу улья*/
 public class RoofOfTheBeehive extends ComponentsOfTheBeehive {
 
+    /* Конструкторы */
     public RoofOfTheBeehive(String article, String name, BigDecimal price, Map<String, String> description, int amount) {
         super(article, name, price, description, amount);
     }
