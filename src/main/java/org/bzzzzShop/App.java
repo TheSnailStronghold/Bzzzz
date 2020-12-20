@@ -137,9 +137,6 @@ public class App {
                 )
         );
 
-
-
-
         MaskOfTheBeekeeper maskOfTheBeekeeper = new MaskOfTheBeekeeper("233",
                 "Сетка лицевая Европейского образца",
                 new BigDecimal(400),
