@@ -32,7 +32,8 @@ public class Uniform extends Goods {
     public String toString() {
         /*TODO: сделать по-человечески*/
         StringBuilder builder = new StringBuilder();
-        builder.append(super.toString());
+
+        
         builder.append("Информация о товаре:\n"
                            +"Размер модели: "+ size
                            +"\nПроизводитель: " + brand
