@@ -5,7 +5,7 @@ import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
 import org.bzzzzShop.models.beehive.components.*;
 import org.bzzzzShop.models.uniform.MaskOfTheBeekeeper;
-import org.bzzzzShop.models.uniform.Uniform;
+import org.bzzzzShop.models.Address;
 
 import java.math.BigDecimal;
 import java.util.AbstractMap;
@@ -152,6 +152,18 @@ public class App {
         System.out.println(maskOfTheBeekeeper + "\n________________________________________");
         /*!-Тестовая шляпа для проверки работы*/
 
+
+        /* проверка адреса */
+        Address myAddress = new Address("Россия", "Тверь",
+                                "Садовый переулок", "35", "304");
+        Address yourAddress = new Address("Россия", "Тверь",
+                "Колодкина", "8");
+
+        System.out.println(
+                         myAddress.toString() + "\n"
+                        + yourAddress.toString() + "\n" +
+                        "-----------------------------------------------------"
+        );
 
     }
 }
