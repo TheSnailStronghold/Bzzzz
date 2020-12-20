@@ -30,12 +30,13 @@ public class Uniform extends Goods {
     /*Переделать бы эту шляпу*/
     @Override
     public String toString() {
-        /*TODO: сделать по-человечески*/
-        return super.toString().replace("}",
-                "\nsize='" + size + '\'' +
-                ", brand='" + brand + '\'' +
-                ", material='" + material + '\'' +
-                '}');
+        StringBuilder builder = new StringBuilder();
+        builder.append(super.toString());
+        builder.append("Информация о товаре:\n"
+                +"Размер модели: "+ size
+                +"\nПроизводитель: " + brand
+                +"\nМатериал в составе: " + material);
+        return builder.toString();
     }
 
     /* get + set*/

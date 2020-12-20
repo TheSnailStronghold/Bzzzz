@@ -4,6 +4,7 @@ package org.bzzzzShop;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
 import org.bzzzzShop.models.beehive.components.*;
+import org.bzzzzShop.models.uniform.MaskOfTheBeekeeper;
 
 import java.math.BigDecimal;
 import java.util.AbstractMap;
@@ -135,6 +136,21 @@ public class App {
                                 "-----------------------------------------------------"
                 )
         );
+
+
+
+
+        MaskOfTheBeekeeper maskOfTheBeekeeper = new MaskOfTheBeekeeper("233",
+                "Сетка лицевая Европейского образца",
+                new BigDecimal(400),
+                new String[][]{
+                        {"Описание",
+                                "Сетка лицевая Европейского образца ораньжевая\n" +
+                                        "с широкими полями и круговой сеткой из плотной\n" +
+                                        "красочной ткани\n"}
+                }
+                ,50,"XL","bb","ткань");
+        System.out.println(maskOfTheBeekeeper + "\n________________________________________");
         /*!-Тестовая шляпа для проверки работы*/
     }
 }
