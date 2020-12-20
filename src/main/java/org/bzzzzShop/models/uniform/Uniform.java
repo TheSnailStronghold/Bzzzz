@@ -31,11 +31,21 @@ public class Uniform extends Goods {
     @Override
     public String toString() {
         /*TODO: сделать по-человечески*/
-        return super.toString().replace("}",
+        StringBuilder builder = new StringBuilder();
+        builder.append(super.toString());
+        builder.append("Информация о товаре:\n"
+                           +"Размер модели: "+ size
+                           +"\nПроизводитель: " + brand
+                           +"\nМатериал в составе: " + material);
+        return builder.toString();
+     /*
+      return super.toString().replace("}",
                 "\nsize='" + size + '\'' +
                 ", brand='" + brand + '\'' +
                 ", material='" + material + '\'' +
                 '}');
+
+      */
     }
 
     /* get + set*/
