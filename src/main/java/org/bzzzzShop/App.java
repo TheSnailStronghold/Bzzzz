@@ -1,6 +1,7 @@
 package org.bzzzzShop;
 
 
+import org.bzzzzShop.models.Customer;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
 import org.bzzzzShop.models.beehive.components.*;
@@ -153,5 +154,11 @@ public class App {
         /*!-Тестовая шляпа для проверки работы*/
 
 
+        Customer chel = new Customer("Jhon","6-6-6","bubble@gmail.com","root");
+        System.out.println(chel);
+
     }
+
+
+
 }
