@@ -13,22 +13,13 @@ public class OrderState {
         this.state = State.ACCEPTED;
     }
 
-    public void showOrderState(){
-        System.out.println("Статус заказа: " + this.state.getName());
-    }
-
     public void setOrderState(State state){
         this.state = state;
     }
 
-
     @Override
     public String toString(){
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("Статус заказа: " + state.getName());
-
-        return builder.toString();
+        return "Статус заказа: " + state.getName();
     }
 
     public State getState() {
