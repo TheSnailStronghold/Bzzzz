@@ -47,9 +47,7 @@ public class Customer {
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber;}
     public void setEmail(String email) {
         this.email = email;
     }

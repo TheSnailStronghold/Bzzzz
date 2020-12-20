@@ -2,6 +2,7 @@ package org.bzzzzShop.models;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,6 +48,19 @@ public abstract class Goods {
                 str.append(String.format("%s: %s\n", key, value))
         );
         return str.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Goods)) return false;
+        Goods goods = (Goods) o;
+        return article.equals(goods.article);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(article);
     }
 
     /*GET + SET*/
