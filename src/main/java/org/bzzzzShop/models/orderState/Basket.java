@@ -42,6 +42,7 @@ public class Basket {
         str.append("Суммарное число товаров в корзине: " + this.contentNumber + "\n");
         str.append("============================================\n");
         return str.toString();
+
     }
 
 
