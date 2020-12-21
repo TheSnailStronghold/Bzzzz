@@ -1,12 +1,17 @@
 package org.bzzzzShop.models.orderState;
+import org.bzzzzShop.models.Customer;
 import org.bzzzzShop.models.Goods;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Basket {
-    private Map<Goods,Integer> content = new HashMap<Goods, Integer>();
+    private Map<Goods,Integer> content = new HashMap<>();
     private int contentNumber = 0;
+
+    public Map<Goods, Integer> getContent() {
+        return content;
+    }
 
     public void addGood(Goods product){
         if(!content.containsKey(product)){
@@ -30,8 +35,10 @@ public class Basket {
 
     @Override
     public String toString(){
-        if(content.isEmpty())return "the basket is empty";
         StringBuilder str = new StringBuilder();
+
+        if(content.isEmpty()) return "Корзина пуста.";
+
         str.append("СОДЕРЖИМОЕ КОРЗИНЫ:\n");
         for (Map.Entry<Goods, Integer> item : content.entrySet()) {
             str.append(String.format("Наименование товара: %s\n" +
@@ -44,7 +51,4 @@ public class Basket {
         return str.toString();
 
     }
-
-
-
 }

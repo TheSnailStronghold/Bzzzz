@@ -152,8 +152,7 @@ public class App {
         System.out.println(maskOfTheBeekeeper + "\n________________________________________");
         /*!-Тестовая шляпа для проверки работы*/
         
-        Customer chel = new Customer("Jhon", "6-6-6", "bubble@gmail.com", "root");
-        System.out.println(chel);
+
 
         /* проверка адреса */
         Address myAddress = new Address("Россия", "Тверь",
@@ -167,6 +166,14 @@ public class App {
                         "-----------------------------------------------------"
         );
 
+        Customer chel = new Customer(
+                "Jhon",
+                "6-6-6",
+                "bubble@gmail.com",
+                "root",
+                null);
+
+        System.out.println(chel);
         //проверка корзины
         goods.add(roof);
         Basket bask = new Basket();
@@ -176,7 +183,6 @@ public class App {
             bask.deleteGood(el);
             System.out.println(bask);
         });
-        /*bask.emptyBasket();
-        System.out.println(bask);*/
+
     }
 }
