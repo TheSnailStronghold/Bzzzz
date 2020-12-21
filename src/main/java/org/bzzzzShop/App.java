@@ -5,6 +5,7 @@ import org.bzzzzShop.models.Customer;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
 import org.bzzzzShop.models.beehive.components.*;
+import org.bzzzzShop.models.orderState.Basket;
 import org.bzzzzShop.models.uniform.MaskOfTheBeekeeper;
 import org.bzzzzShop.models.Address;
 
@@ -151,8 +152,7 @@ public class App {
         System.out.println(maskOfTheBeekeeper + "\n________________________________________");
         /*!-Тестовая шляпа для проверки работы*/
         
-        Customer chel = new Customer("Jhon", "6-6-6", "bubble@gmail.com", "root");
-        System.out.println(chel);
+
 
         /* проверка адреса */
         Address myAddress = new Address("Россия", "Тверь",
@@ -165,6 +165,24 @@ public class App {
                         + yourAddress.toString() + "\n" +
                         "-----------------------------------------------------"
         );
+
+        Customer chel = new Customer(
+                "Jhon",
+                "6-6-6",
+                "bubble@gmail.com",
+                "root",
+                null);
+
+        System.out.println(chel);
+        //проверка корзины
+        goods.add(roof);
+        Basket bask = new Basket();
+        goods.forEach(el -> bask.addGood(el));
+        System.out.println(bask);
+        goods.forEach((el)-> {
+            bask.deleteGood(el);
+            System.out.println(bask);
+        });
 
     }
 }
