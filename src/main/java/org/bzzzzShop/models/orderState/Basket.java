@@ -4,13 +4,20 @@ import org.bzzzzShop.models.Goods;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Basket {
+
+    private UUID uuid;
     private Map<Goods,Integer> content = new HashMap<>();
     private int contentNumber = 0;
 
     public Map<Goods, Integer> getContent() {
         return content;
+    }
+
+    public Basket() {
+        this.uuid = UUID.randomUUID();
     }
 
     public void addGood(Goods product){
