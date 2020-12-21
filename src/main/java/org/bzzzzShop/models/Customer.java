@@ -1,17 +1,23 @@
 package org.bzzzzShop.models;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Scanner;
+import java.util.UUID;
 
 /*Покупатель*/
 public class Customer {
+    private UUID uuid;
     private String username;
     private String phoneNumber;
     private String email;
     private String password;
     private List<Order> orders;
+
+
+    //TODO Delete me later
+    public Customer() {
+        this.uuid = UUID.randomUUID();
+    }
 
     public Customer(String username, String phoneNumber, String email,
                     String password, List<Order> orders) {
