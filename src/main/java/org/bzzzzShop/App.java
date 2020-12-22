@@ -1,15 +1,5 @@
 package org.bzzzzShop;
 
-
-//import org.bzzzzShop.models.Address;
-//import org.bzzzzShop.models.Customer;
-//import org.bzzzzShop.models.Goods;
-//import org.bzzzzShop.models.beehive.Beehive;
-//import org.bzzzzShop.models.beehive.components.*;
-//import org.bzzzzShop.models.orderState.Basket;
-//import org.bzzzzShop.models.uniform.MaskOfTheBeekeeper;
-
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
