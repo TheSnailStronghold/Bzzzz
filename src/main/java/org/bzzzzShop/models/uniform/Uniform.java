@@ -20,6 +20,15 @@ public class Uniform extends Goods {
     }
 
     public Uniform(String article, String name, BigDecimal price,
+                   String description, int amount, String size,
+                   String brand, String material) {
+        super(article, name, price, description, amount);
+        this.size = size;
+        this.brand = brand;
+        this.material = material;
+    }
+
+    public Uniform(String article, String name, BigDecimal price,
                    String[][] description, int amount, String size, String brand, String material) {
         super(article, name, price, description, amount);
         this.size = size;

@@ -265,14 +265,16 @@ public class ServiceWorker {
         products.add(new GlovesOfTheBeekeeper("0399",
                 "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУСТВ. КОЖА С НАРУКАВНИКАМИ",
                 new BigDecimal(600),
-                new String[][]{{""}},
+                        "",
+//                new String[][]{{""}},
                 100, "S", "PMiKBee", "кожа")
         );
 
         products.add(new GlovesOfTheBeekeeper("0400",
                 "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУСТВ. КОЖА С НАРУКАВНИКАМИ",
                 new BigDecimal(600),
-                new String[][]{{""}},
+                       "",
+//                new String[][]{{""}},
                 100, "M", "PMiKBee", "кожа")
         );
 
@@ -318,5 +320,4 @@ public class ServiceWorker {
         );
 
     }
-
 }
