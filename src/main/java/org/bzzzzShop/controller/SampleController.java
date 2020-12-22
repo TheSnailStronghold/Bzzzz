@@ -4,6 +4,7 @@ import org.bzzzzShop.ServiceWorker;
 import org.bzzzzShop.dto.BasketDTO;
 import org.bzzzzShop.models.Basket;
 import org.bzzzzShop.models.Customer;
+import org.bzzzzShop.models.Goods;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -22,12 +23,16 @@ public class SampleController {
     @GetMapping("/main")
     public String mainPage() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Welcome, customer! You are now in 'Bzzzz' — the best beekeeping shop!");
-        builder.append("\n");
+        builder.append("Добро пожаловать в 'Bzzzz' — лучший пчеловодческий магазин в нашей галактике!");
+        builder.append("\n\nНАШИ ТОВАРЫ:\n\n");
         /*  В браузере перенос строки он почему-то не отображает, но в Postman видит.
             Сдавать нам именно в Postman, так что не страшно, думаю.
          */
-        builder.append("You are now at beta page, shop is not finished yet. Return soon!");
+        for (Goods item: serviceWorker.products){
+            builder.append(item.toString() +
+                                "\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" +
+                                    "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\n");
+        }
         return builder.toString();
     }
 
