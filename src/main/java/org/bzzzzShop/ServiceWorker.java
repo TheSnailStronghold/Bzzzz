@@ -11,12 +11,13 @@ import java.math.BigDecimal;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ServiceWorker {
 
-    public List<Goods> products = new ArrayList<>();
+    private List<Goods> products = new ArrayList<>();
 
     /*
         Здесь идёт довольно громоздкий код, это создание компонент улья и других товаров.
@@ -273,7 +274,7 @@ public class ServiceWorker {
         products.add(new GlovesOfTheBeekeeper("0400",
                 "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУСТВ. КОЖА С НАРУКАВНИКАМИ",
                 new BigDecimal(600),
-                       "",
+                       "SEX",
 //                new String[][]{{""}},
                 100, "M", "PMiKBee", "кожа")
         );
@@ -318,6 +319,21 @@ public class ServiceWorker {
                         "пчеловода во время работы на пасеке от укусов пчел."}
                 }, 50, "48-50", "PMiKBee", "кожа")
         );
-
     }
+
+    public Goods getGoodsByArticle(String article) {
+        Goods goods = null;
+        try {
+            goods = products.stream()
+                   .filter(p -> p.getArticle().equals(article))
+                   .findFirst()
+                   .get();
+        } catch (NoSuchElementException ignored ){}
+        return goods;
+    }
+
+    public List<Goods> getAllProducts () {
+        return products;
+    }
+
 }
