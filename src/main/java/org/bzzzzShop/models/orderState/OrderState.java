@@ -1,32 +1,22 @@
 package org.bzzzzShop.models.orderState;
 
-/* Класс, описывающий Статус Заказа*/
-public class OrderState {
+/* Класс - перечисление возможных статусов заказа*/
+public enum OrderState {
 
-    private State state;
+    ACCEPTED("заказ принят"),
+    GATHERING_ITEMS("сбор заказа"),
+    IN_TRANSFER("передан в службу доставки"),
+    DELIVERED_TO_PICK_UP_POINT("доставлен в пункт выдачи"),
+    COMPLETED("заказ завершен");
 
-    public OrderState(State state){
-        this.state = state;
+    private String name;
+
+    OrderState(String name) {
+        this.name = name;
     }
 
-    public OrderState(){
-        this.state = State.ACCEPTED;
+    public String getName(){
+        return name;
     }
 
-    public void setOrderState(State state){
-        this.state = state;
-    }
-
-    @Override
-    public String toString(){
-        return "Статус заказа: " + state.getName();
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
 }
