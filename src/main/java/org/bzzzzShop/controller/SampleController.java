@@ -25,7 +25,7 @@ public class SampleController {
     @PostMapping("/addToCart")
     public Basket addToBasket(@RequestBody BasketDTO basketDTO) {
         //TODO здесь будет метод, который отдает корзину после добавления в нее товара
-        return new Basket();
+        return null;
     }
     //Мы используем методы помеченные GetMapping когда хотим получить информацию
     @GetMapping("/greeting")
@@ -36,9 +36,16 @@ public class SampleController {
     @GetMapping("/main")
     public String mainPage() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Welcome, customer! You are now in 'Bzzzz' — the best beekeeping shop!");
-        builder.append("\n");
-        builder.append("You are now at beta page, shop is not finished yet. Return soon!");
+        builder.append("Добро пожаловать в 'Bzzzz' — лучший пчеловодческий магазин в нашей галактике!");
+        builder.append("\n\nНАШИ ТОВАРЫ:\n\n");
+        /*  В браузере перенос строки он почему-то не отображает, но в Postman видит.
+            Сдавать нам именно в Postman, так что не страшно, думаю.
+         */
+        for (Goods item: serviceWorker.getAllProducts()){
+            builder.append(item.toString() +
+                    "\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" +
+                    "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\n");
+        }
         return builder.toString();
     }
     /*  Про покупателя */
@@ -60,12 +67,12 @@ public class SampleController {
     }
     /*  Про товары */
     @GetMapping("/getGoodsByArticle/{article}")
-    public ResponseEntity<String> getGoodsByArticle(@PathVariable String article){
+    public ResponseEntity<String> getGoodsByArticle(@PathVariable String article) {
 
         Goods goods = serviceWorker.getGoodsByArticle(article);
         if (goods != null)
             return new ResponseEntity<>(goods.toString(), HttpStatus.OK);
         else
-            return new ResponseEntity<>("Not find.",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Not find.", HttpStatus.NOT_FOUND);
     }
 }
