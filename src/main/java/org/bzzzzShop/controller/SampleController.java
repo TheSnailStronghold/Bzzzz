@@ -3,6 +3,7 @@ package org.bzzzzShop.controller;
 import org.bzzzzShop.ServiceWorker;
 import org.bzzzzShop.dto.BasketDTO;
 import org.bzzzzShop.models.Basket;
+import org.bzzzzShop.models.Customer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -31,9 +32,9 @@ public class SampleController {
     }
 
     @PostMapping("/findBuyer")
-    public String getBuyerById(@RequestParam(value = "id") UUID id) {
+    public Customer getBuyerById(@RequestParam(value = "id") UUID id) {
         //TODO здесь мы должныы опиать логику поиска покупателя по его уникального идентифкатору в БД
-        return "It`s getBuyerById" + id.toString();
+        return new Customer();
     }
 
     //Мы используем методы помеченные PostMapping когда хотим добавить или сохранить информацию
