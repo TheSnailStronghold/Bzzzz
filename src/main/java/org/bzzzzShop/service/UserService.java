@@ -2,7 +2,9 @@ package org.bzzzzShop.service;
 
 import org.bzzzzShop.models.customer.Customer;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class UserService {
 

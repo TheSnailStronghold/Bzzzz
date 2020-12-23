@@ -1,11 +1,9 @@
 package org.bzzzzShop.controller;
 
+import org.bzzzzShop.models.Goods;
+import org.bzzzzShop.models.customer.Customer;
 import org.bzzzzShop.service.ServiceWorker;
 import org.bzzzzShop.service.UserService;
-import org.bzzzzShop.dto.BasketDTO;
-import org.bzzzzShop.models.Basket;
-import org.bzzzzShop.models.customer.Customer;
-import org.bzzzzShop.models.Goods;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +16,7 @@ public class SampleController {
     /* Сервис для работы с пользователями */
     private UserService userService = new UserService();
 
-    @PostMapping("/addToCart")
-    public Basket addToBasket(@RequestBody BasketDTO basketDTO) {
 
-        return null;
-    }
 
     @GetMapping("/main")
     public String mainPage() {
@@ -51,15 +45,12 @@ public class SampleController {
 
     @PostMapping("/changeUser")
     public String changeUser(@RequestBody Customer customer) {
-        /*
-            Блин, а ещё ведь надо проверять, существует ли вообще такой пользователь.
-        */
-        /* Проверить equals*/
-//        if (customer.equals(userService.getActiveCustomer())) {
-//            userService.setActiveCustomer(customer);
-            return "Вы переключились на пользователя " + customer.getUsername() + "\n";
-//        }
-//        else return "Этот пользователь уже выбран.";
+        if (!customer.equals(userService.getActiveCustomer())) {
+            userService.setActiveCustomer(customer);
+            return "Вы переключились на пользователя '" + customer.getUsername() + "'\n";
+        }
+        else
+            return "Этот пользователь уже выбран.";
     }
 
     @GetMapping("/findBuyer/{username}")
