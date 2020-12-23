@@ -46,7 +46,10 @@ public abstract class Goods {
                 .toMap(p-> p[0], p-> p[1]));
         this.amount = amount;
     }
-
+    public String mainInfo(){
+        return String.format("%s(арт.%s)", name, article);
+              /* Стол(арт.545) - 5шт*/
+    }
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
