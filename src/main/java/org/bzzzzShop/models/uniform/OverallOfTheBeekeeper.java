@@ -12,6 +12,11 @@ public class OverallOfTheBeekeeper extends Uniform {
         super(article, name, price, description, amount, size, brand, material);
     }
 
+    public OverallOfTheBeekeeper(String article, String name, BigDecimal price, String description,
+                                 int amount, String size, String brand, String material) {
+        super(article, name, price, description, amount, size, brand, material);
+    }
+
     public OverallOfTheBeekeeper(String article, String name, BigDecimal price,
                                  String[][] description, int amount, String size,
                                  String brand, String material) {

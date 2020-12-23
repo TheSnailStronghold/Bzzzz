@@ -1,6 +1,7 @@
 package org.bzzzzShop.models;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,6 +24,17 @@ public abstract class Goods {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.amount = amount;
+    }
+    public Goods(String article, String name, BigDecimal price, String description, int amount) {
+        this.article = article;
+        this.name = name;
+        this.price = price;
+        this.description = new HashMap<>();
+
+        this.description.put("Описание", !description.isEmpty()
+                ?
+                description : "Пусто");
         this.amount = amount;
     }
     public Goods(String article, String name, BigDecimal price, String[][] description, int amount) {

@@ -37,6 +37,17 @@ public abstract class ComponentsOfTheBeehive extends Goods {
         this.weight = weight;
     }
 
+    public ComponentsOfTheBeehive(String article, String name, BigDecimal price, String description,
+                                  int amount, Integer length, Integer width,
+                                  Integer height, Unit unitName, int weight) {
+        super(article, name, price, description, amount);
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.unitName = unitName;
+        this.weight = weight;
+    }
+
     public ComponentsOfTheBeehive(String article, String name, BigDecimal price, String[][] description,
                                   int amount, Integer length, Integer width,
                                   Integer height, Unit unitName, int weight) {

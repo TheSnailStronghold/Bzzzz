@@ -1,4 +1,4 @@
-package org.bzzzzShop.models.orderState;
+package org.bzzzzShop.models;
 import org.bzzzzShop.models.Customer;
 import org.bzzzzShop.models.Goods;
 

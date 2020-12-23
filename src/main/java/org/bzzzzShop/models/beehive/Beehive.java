@@ -20,6 +20,12 @@ public class Beehive extends Goods {
         this.componentsOfTheBeehives = componentsOfTheBeehives;
     }
 
+    public Beehive(String article, String name, BigDecimal price, String description,
+                   int amount, List<Map.Entry<ComponentsOfTheBeehive, Integer>> componentsOfTheBeehives) {
+        super(article, name, price, description, amount);
+        this.componentsOfTheBeehives = componentsOfTheBeehives;
+    }
+
     public Beehive(String article, String name, BigDecimal price,
                    String[][] description, int amount,
                    List<Map.Entry<ComponentsOfTheBeehive, Integer>> componentsOfTheBeehives) {
