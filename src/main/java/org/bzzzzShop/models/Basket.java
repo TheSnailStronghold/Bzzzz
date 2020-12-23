@@ -29,11 +29,19 @@ public class Basket {
     }
 
     public void deleteGood(Goods product) {
-        if (content.containsKey(product)) {
-            if (content.put(product, content.get(product) - 1) == 1) {
+        deleteGood(product, 1);
+    }
+
+    public void deleteGood(Goods product, Integer amount ){
+        if(content.containsKey(product)){
+            if(amount<0 || amount>content.get(product))
+                throw new IllegalArgumentException("Некорректный аргумент - указанное количество отрицательно или больше содержимого");
+            if(content.put(product, content.get(product) - amount) == amount){
                 content.remove(product);
             }
             contentNumber--;
+        }else{
+            throw new IllegalArgumentException("Указанного товара нет в корзине");
         }
     }
 
