@@ -1,4 +1,4 @@
-package org.bzzzzShop.models;
+package org.bzzzzShop.models.customer;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ public class Customer {
 
     public Customer(String login, String password, String username, String phoneNumber, String email) {
         customerAcc = new Account(login, password);
-        this.username=username;
+        this.username = username;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
@@ -37,9 +37,10 @@ public class Customer {
         str.append(String.format("Имя пользователя: %s\n" +
                         "Номер телфона: %s\n" +
                         "E-mail: %s\n",
-                 username, phoneNumber, email));
+                username, phoneNumber, email));
         str.append("--------------------------------------------\n");
         str.append("История заказов(заказ, дата):\n");
+
         /*SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");
         if (orders != null) {
             for (Order o : orders)
@@ -62,9 +63,10 @@ public class Customer {
         return email;
     }
 
-    public void setUsername(String username){
-        this.username=username;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

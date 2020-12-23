@@ -1,6 +1,6 @@
-package org.bzzzzShop;
+package org.bzzzzShop.service;
 
-import org.bzzzzShop.models.Customer;
+import org.bzzzzShop.models.customer.Customer;
 
 import java.util.*;
 

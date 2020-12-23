@@ -1,4 +1,4 @@
-package org.bzzzzShop.models;
+package org.bzzzzShop.models.order;
 
 public class Address {
     private String country;

@@ -1,4 +1,4 @@
-package org.bzzzzShop;
+package org.bzzzzShop.service;
 
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.beehive.Beehive;
