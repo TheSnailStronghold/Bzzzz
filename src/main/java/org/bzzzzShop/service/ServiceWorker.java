@@ -354,7 +354,7 @@ public class ServiceWorker {
         List<Goods> goods = null;
         try {
             goods = products.stream()
-                    .filter(p -> p.getName().startsWith(name))
+                    .filter(p -> p.getName().toUpperCase().startsWith(name))
                     .collect(Collectors.toList());
         } catch (NoSuchElementException ignored) {
         }
