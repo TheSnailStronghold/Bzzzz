@@ -11,9 +11,6 @@ public class Basket {
     private Map<Goods,Integer> content = new HashMap<>();
     private int contentNumber = 0;
     private Customer customer;
-    public Map<Goods, Integer> getContent() {
-        return content;
-    }
 
     public Basket() {
         this.uuid = UUID.randomUUID();
@@ -27,6 +24,7 @@ public class Basket {
         }
         contentNumber++;
     }
+
     public void deleteGood(Goods product){
         if(content.containsKey(product)){
             if(content.put(product, content.get(product)-1)==1){
@@ -37,6 +35,10 @@ public class Basket {
     }
     public void emptyBasket(){
         content.clear();
+    }
+
+    public Map<Goods, Integer> getContent() {
+        return content;
     }
 
     @Override
