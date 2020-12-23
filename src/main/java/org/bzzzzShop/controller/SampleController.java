@@ -1,17 +1,14 @@
 package org.bzzzzShop.controller;
 
-import org.bzzzzShop.ServiceWorker;
-import org.bzzzzShop.UserService;
+import org.bzzzzShop.service.ServiceWorker;
+import org.bzzzzShop.service.UserService;
 import org.bzzzzShop.dto.BasketDTO;
 import org.bzzzzShop.models.Basket;
-import org.bzzzzShop.models.Customer;
+import org.bzzzzShop.models.customer.Customer;
 import org.bzzzzShop.models.Goods;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.NoSuchElementException;
-import java.util.UUID;
 
 @RestController
 public class SampleController {
@@ -21,16 +18,10 @@ public class SampleController {
     /* Сервис для работы с пользователями */
     private UserService userService = new UserService();
 
-    //Мы используем методы помеченные PostMapping когда хотим добавить или сохранить информацию
     @PostMapping("/addToCart")
     public Basket addToBasket(@RequestBody BasketDTO basketDTO) {
-        //TODO здесь будет метод, который отдает корзину после добавления в нее товара
+
         return null;
-    }
-    //Мы используем методы помеченные GetMapping когда хотим получить информацию
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return "Hello, " + name + "!";
     }
 
     @GetMapping("/main")
@@ -63,6 +54,7 @@ public class SampleController {
         /*
             Блин, а ещё ведь надо проверять, существует ли вообще такой пользователь.
         */
+        /* Проверить equals*/
 //        if (customer.equals(userService.getActiveCustomer())) {
 //            userService.setActiveCustomer(customer);
             return "Вы переключились на пользователя " + customer.getUsername() + "\n";

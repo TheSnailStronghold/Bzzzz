@@ -1,5 +1,7 @@
-package org.bzzzzShop.models;
+package org.bzzzzShop.models.order;
 
+import org.bzzzzShop.models.Basket;
+import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.orderState.OrderState;
 
 import java.math.BigDecimal;

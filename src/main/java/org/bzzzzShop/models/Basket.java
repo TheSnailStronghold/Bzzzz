@@ -1,6 +1,5 @@
 package org.bzzzzShop.models;
-import org.bzzzzShop.models.Customer;
-import org.bzzzzShop.models.Goods;
+import org.bzzzzShop.models.customer.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,7 @@ public class Basket {
     private UUID uuid;
     private Map<Goods,Integer> content = new HashMap<>();
     private int contentNumber = 0;
-
+    private Customer customer;
     public Map<Goods, Integer> getContent() {
         return content;
     }

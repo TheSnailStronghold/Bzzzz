@@ -1,4 +1,4 @@
-package org.bzzzzShop.models;
+package org.bzzzzShop.models.customer;
 
 import java.util.Objects;
 
