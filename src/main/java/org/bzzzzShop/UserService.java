@@ -5,7 +5,9 @@ import org.bzzzzShop.models.Customer;
 import java.util.*;
 
 public class UserService {
+
     private Set<Customer> customerSet = new HashSet<>();
+    private Customer activeCustomer;
 
     public boolean addCustomer(Customer customer) {
         /*Если существует пользователь с таким же логином как у
@@ -25,4 +27,15 @@ public class UserService {
         return a;
     }
 
+    public Set<Customer> getCustomerSet() {
+        return customerSet;
+    }
+
+    public Customer getActiveCustomer() {
+        return activeCustomer;
+    }
+
+    public void setActiveCustomer(Customer activeCustomer) {
+        this.activeCustomer = activeCustomer;
+    }
 }

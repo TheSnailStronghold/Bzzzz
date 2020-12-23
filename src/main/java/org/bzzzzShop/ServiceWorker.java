@@ -283,7 +283,7 @@ public class ServiceWorker {
         products.add(new GlovesOfTheBeekeeper("0400",
                 "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУССТВ. КОЖА С НАРУКАВНИКАМИ",
                 new BigDecimal(600),
-                       "SEX",
+                       "",
 //                new String[][]{{""}},
                 100, "M", "PMiKBee", "кожа")
         );
