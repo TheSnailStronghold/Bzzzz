@@ -12,19 +12,29 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/* Класс синглтон
+ * для работы с товарами */
 public class ServiceWorker {
 
-    private Set<Goods> products = new HashSet<>();
+    private Set<Goods> products;
+    private static ServiceWorker instance;
 
+    public static ServiceWorker getInstance() {
+        if (instance == null)
+            instance = new ServiceWorker();
+        return instance;
+    }
+
+    private ServiceWorker() {
+        products = new HashSet<>();
     /*
         Здесь идёт довольно громоздкий код, это создание компонент улья и других товаров.
         Выглядит страшно, но так надо :) (надеюсь)
      */
 
-    //--------------------------------------------------------------------------------------------------------------
-    //      Улей1
-    //--------------------------------------------------------------------------------------------------------------
-    {
+        //--------------------------------------------------------------------------------------------------------------
+        //      Улей1
+        //--------------------------------------------------------------------------------------------------------------
         ComponentsOfTheBeehive roof = new RoofOfTheBeehive(
                 "1321",
                 "Крыша ППУ Нижегородец на 6 рамок",
@@ -270,19 +280,19 @@ public class ServiceWorker {
         //--------------------------------------------------------------------------------------------------------------
 
         products.add(new GlovesOfTheBeekeeper("0399",
-                "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУССТВ. КОЖА С НАРУКАВНИКАМИ",
-                new BigDecimal(600),
+                        "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУССТВ. КОЖА С НАРУКАВНИКАМИ",
+                        new BigDecimal(600),
                         "",
 //                new String[][]{{""}},
-                100, "S", "PMiKBee", "кожа")
+                        100, "S", "PMiKBee", "кожа")
         );
 
         products.add(new GlovesOfTheBeekeeper("0400",
-                "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУССТВ. КОЖА С НАРУКАВНИКАМИ",
-                new BigDecimal(600),
-                       "",
+                        "ПЕРЧАТКИ ПЧЕЛОВОДА ИСКУССТВ. КОЖА С НАРУКАВНИКАМИ",
+                        new BigDecimal(600),
+                        "",
 //                new String[][]{{""}},
-                100, "M", "PMiKBee", "кожа")
+                        100, "M", "PMiKBee", "кожа")
         );
 
         products.add(new GlovesOfTheBeekeeper("245",
@@ -313,8 +323,8 @@ public class ServiceWorker {
                 "КОСТЮМ ЛЮКС 'ПЧЕЛОТЕХНИКА'",
                 new BigDecimal(2_600),
                 new String[][]{{"Описание", "Костюм пчеловода защищает голову, туловище и конечности " +
-                                    "пчеловода во время работы на пасеке от укусов пчел. Для комплексной защиты " +
-                                    "рекомендуется дополнительно использовать перчатки защитные с нарукавниками."}
+                        "пчеловода во время работы на пасеке от укусов пчел. Для комплексной защиты " +
+                        "рекомендуется дополнительно использовать перчатки защитные с нарукавниками."}
                 }, 35, "48-50", "PMiKBee", "кожа")
         );
 
@@ -325,6 +335,7 @@ public class ServiceWorker {
                         "пчеловода во время работы на пасеке от укусов пчел."}
                 }, 50, "48-50", "PMiKBee", "кожа")
         );
+
     }
 
     public Goods findGoodsByArticle(String article) {
@@ -334,7 +345,8 @@ public class ServiceWorker {
                     .filter(p -> p.getArticle().equals(article))
                     .findFirst()
                     .get();
-        } catch (NoSuchElementException ignored ){}
+        } catch (NoSuchElementException ignored) {
+        }
         return goods;
     }
 
@@ -342,15 +354,14 @@ public class ServiceWorker {
         List<Goods> goods = null;
         try {
             goods = products.stream()
-                   .filter(p -> p.getName().startsWith(name))
+                    .filter(p -> p.getName().startsWith(name))
                     .collect(Collectors.toList());
-//                   .findFirst()
-//                   .get();
-        } catch (NoSuchElementException ignored ){}
+        } catch (NoSuchElementException ignored) {
+        }
         return goods;
     }
 
-    public Set<Goods> getAllProducts () {
+    public Set<Goods> getAllProducts() {
         return products;
     }
 

@@ -15,9 +15,9 @@ import java.util.List;
 public class SampleController {
 
     /* Сервис для работы с товарами */
-    private ServiceWorker serviceWorker = new ServiceWorker();
+    private ServiceWorker serviceWorker = ServiceWorker.getInstance();
     /* Сервис для работы с пользователями */
-    private UserService userService = new UserService();
+    private UserService userService = UserService.getInstance();
 
     @GetMapping("/main")
     public String mainPage() {

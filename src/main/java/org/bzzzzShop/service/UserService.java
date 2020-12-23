@@ -6,10 +6,19 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+/* Класс синглтон
+ * для работы c пользователями */
 public class UserService {
 
-    private Set<Customer> customerSet = new HashSet<>();
+    private Set<Customer> customerSet;
     private Customer activeCustomer;
+    private static UserService instance;
+
+    public static UserService getInstance() {
+        if (instance == null)
+            instance = new UserService();
+        return instance;
+    }
 
     public boolean addCustomer(Customer customer) {
         /*Если существует пользователь с таким же логином как у
@@ -39,5 +48,9 @@ public class UserService {
 
     public void setActiveCustomer(Customer activeCustomer) {
         this.activeCustomer = activeCustomer;
+    }
+
+    private UserService() {
+        customerSet = new HashSet<>();
     }
 }
