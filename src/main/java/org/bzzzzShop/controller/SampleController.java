@@ -107,24 +107,4 @@ public class SampleController {
         else
             return new ResponseEntity<>("К сожалению, товары по запросу '" + name + "' не найдены.", HttpStatus.NOT_FOUND);
     }
-    /*Работа с корзиной*/
-    /*@GetMapping("/basket/{login}")
-    public String showBasket(@PathVariable String login) {
-       return basketService.getBasketFromCustomer(
-                userService.findByLogin(login)
-        ).toString();
-    }
-
-    @PostMapping("/basket/{login}/add/{article}/{amount}")
-    public String addGoodsToBasket(@PathVariable String login,
-                             @PathVariable String article,
-                             @PathVariable Integer amount)
-    {
-        basketService.addGoodsToBasket(
-                userService.findByLogin(login),
-                serviceWorker.findGoodsByArticle(article),
-                amount
-        );
-        return "Товар добавлен в корзину";
-    }*/
 }
