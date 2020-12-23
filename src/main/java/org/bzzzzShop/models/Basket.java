@@ -11,7 +11,7 @@ public class Basket {
     private int contentNumber = 0;
     private Customer customer;
 
-    public void addGood(Goods product) {
+    public void addGood(Goods product){
        addGood(product, 1);
     }
 
@@ -37,7 +37,7 @@ public class Basket {
         }
     }
 
-    public void emptyBasket() {
+    public void clearBasket() {
         content.clear();
     }
 
