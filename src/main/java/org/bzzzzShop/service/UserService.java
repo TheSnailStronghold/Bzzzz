@@ -31,7 +31,7 @@ public class UserService {
         Customer a = null;
         try {
             a = customerSet.stream()
-                    .filter(c -> c.getAccount().getLogin().equals(login))
+                    .filter(c-> c.getAccount().getLogin().equals(login))
                     .findFirst()
                     .get();
         } catch (NoSuchElementException ignored) { }

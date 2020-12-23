@@ -3,6 +3,7 @@ package org.bzzzzShop.controller;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.customer.Account;
 import org.bzzzzShop.models.customer.Customer;
+import org.bzzzzShop.service.BasketService;
 import org.bzzzzShop.service.ServiceWorker;
 import org.bzzzzShop.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class SampleController {
@@ -18,6 +20,8 @@ public class SampleController {
     private ServiceWorker serviceWorker = ServiceWorker.getInstance();
     /* Сервис для работы с пользователями */
     private UserService userService = UserService.getInstance();
+
+    private BasketService basketService = BasketService.getInstance();
 
     @GetMapping("/main")
     public String mainPage() {
@@ -38,7 +42,8 @@ public class SampleController {
     public ResponseEntity<String> addBuyer(@RequestBody Customer customer) {
         if (userService.addCustomer(customer)) {
             userService.setActiveCustomer(customer);
-            return new ResponseEntity<>(String.format("Пользователь '%s' успешно разеригстрирован.\n", customer.getUsername()), HttpStatus.CREATED);
+            basketService.getBasketFromCustomer(customer);
+            return new ResponseEntity<>(String.format("Пользователь '%s' успешно зарегистрирован .\n", customer.getUsername()), HttpStatus.CREATED);
         }
         else
             return new ResponseEntity<>(String.format("Пользователь с именем '%s' уже существует.\n", customer.getUsername()) ,HttpStatus.UNAUTHORIZED);
@@ -60,9 +65,9 @@ public class SampleController {
             return "Этот пользователь уже выбран.";
     }
 
-    @GetMapping("/findBuyer/{username}")
-    public ResponseEntity<String> findBuyer(@PathVariable String username) {
-        Customer customer = userService.findByLogin(username);
+    @GetMapping("/findBuyer/{login}")
+    public ResponseEntity<String> findBuyer(@PathVariable String login) {
+        Customer customer = userService.findByLogin(login);
         if (customer != null)
             return new ResponseEntity<>(customer.toString(), HttpStatus.OK);
         else
@@ -102,4 +107,24 @@ public class SampleController {
         else
             return new ResponseEntity<>("К сожалению, товары по запросу '" + name + "' не найдены.", HttpStatus.NOT_FOUND);
     }
+    /*Работа с корзиной*/
+    /*@GetMapping("/basket/{login}")
+    public String showBasket(@PathVariable String login) {
+       return basketService.getBasketFromCustomer(
+                userService.findByLogin(login)
+        ).toString();
+    }
+
+    @PostMapping("/basket/{login}/add/{article}/{amount}")
+    public String addGoodsToBasket(@PathVariable String login,
+                             @PathVariable String article,
+                             @PathVariable Integer amount)
+    {
+        basketService.addGoodsToBasket(
+                userService.findByLogin(login),
+                serviceWorker.findGoodsByArticle(article),
+                amount
+        );
+        return "Товар добавлен в корзину";
+    }*/
 }
