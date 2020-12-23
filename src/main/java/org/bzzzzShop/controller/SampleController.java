@@ -36,11 +36,10 @@ public class SampleController {
     @GetMapping("/main")
     public String mainPage() {
         StringBuilder builder = new StringBuilder();
+        if (!userService.getCustomerSet().isEmpty())
+            builder.append("Здравствуйте, " + userService.getActiveCustomer().getUsername() + "!\n");
         builder.append("Добро пожаловать в 'Bzzzz' — лучший пчеловодческий магазин в нашей галактике!");
         builder.append("\n\nНАШИ ТОВАРЫ:\n\n");
-        /*  В браузере перенос строки он почему-то не отображает, но в Postman видит.
-            Сдавать нам именно в Postman, так что не страшно, думаю.
-         */
         for (Goods item: serviceWorker.getAllProducts()){
             builder.append(item.toString() +
                     "\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" +
@@ -51,10 +50,24 @@ public class SampleController {
     /*  Про покупателя */
     @PostMapping("/addBuyer")
     public ResponseEntity<String> addBuyer(@RequestBody Customer customer) {
-        if (userService.addCustomer(customer))
-            return new ResponseEntity<>(String.format("'%s' was registered", customer.getUsername()),HttpStatus.CREATED);
+        if (userService.addCustomer(customer)) {
+            userService.setActiveCustomer(customer);
+            return new ResponseEntity<>(String.format("Пользователь '%s' успешно разеригстрирован.\n", customer.getUsername()), HttpStatus.CREATED);
+        }
         else
-            return new ResponseEntity<>(String.format("'%s' already exists", customer.getUsername()) ,HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(String.format("Пользователь с именем '%s' уже существует.\n", customer.getUsername()) ,HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/changeUser")
+    public String changeUser(@RequestBody Customer customer) {
+        /*
+            Блин, а ещё ведь надо проверять, существует ли вообще такой пользователь.
+        */
+//        if (customer.equals(userService.getActiveCustomer())) {
+//            userService.setActiveCustomer(customer);
+            return "Вы переключились на пользователя " + customer.getUsername() + "\n";
+//        }
+//        else return "Этот пользователь уже выбран.";
     }
 
     @GetMapping("/findBuyer/{username}")
