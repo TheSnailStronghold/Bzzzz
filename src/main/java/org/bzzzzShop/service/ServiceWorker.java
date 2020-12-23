@@ -8,16 +8,13 @@ import org.bzzzzShop.models.uniform.MaskOfTheBeekeeper;
 import org.bzzzzShop.models.uniform.OverallOfTheBeekeeper;
 
 import java.math.BigDecimal;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ServiceWorker {
 
-    private List<Goods> products = new ArrayList<>();
+    private Set<Goods> products = new HashSet<>();
 
     /*
         Здесь идёт довольно громоздкий код, это создание компонент улья и других товаров.
@@ -330,18 +327,30 @@ public class ServiceWorker {
         );
     }
 
-    public Goods getGoodsByArticle(String article) {
+    public Goods findGoodsByArticle(String article) {
         Goods goods = null;
         try {
             goods = products.stream()
-                   .filter(p -> p.getArticle().equals(article))
-                   .findFirst()
-                   .get();
+                    .filter(p -> p.getArticle().equals(article))
+                    .findFirst()
+                    .get();
         } catch (NoSuchElementException ignored ){}
         return goods;
     }
 
-    public List<Goods> getAllProducts () {
+    public List<Goods> getGoodsByName(String name) {
+        List<Goods> goods = null;
+        try {
+            goods = products.stream()
+                   .filter(p -> p.getName().startsWith(name))
+                    .collect(Collectors.toList());
+//                   .findFirst()
+//                   .get();
+        } catch (NoSuchElementException ignored ){}
+        return goods;
+    }
+
+    public Set<Goods> getAllProducts () {
         return products;
     }
 

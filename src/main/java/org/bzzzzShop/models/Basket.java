@@ -7,22 +7,25 @@ import java.util.Map;
 
 public class Basket {
 
-    //    private UUID uuid;
     private Map<Goods, Integer> content = new HashMap<>();
     private int contentNumber = 0;
     private Customer customer;
 
-//    public Basket() {
-//        this.uuid = UUID.randomUUID();
-//    }
+    public void addGood(Goods product){
+       addGood(product, 1);
+    }
 
-    public void addGood(Goods product) {
+    public void addGood(Goods product, Integer amount) {
+        if (amount <= 0)
+            throw new IllegalArgumentException("Число товара не может быть отрицательным!");
+        if (amount > product.getAmount())
+            amount = product.getAmount();
         if (!content.containsKey(product)) {
-            content.put(product, 1);
+            content.put(product, amount);
         } else {
-            content.put(product, content.get(product) + 1);
+            content.put(product, content.get(product) + amount);
         }
-        contentNumber++;
+        contentNumber += amount;
     }
 
     public void deleteGood(Goods product) {
@@ -34,7 +37,7 @@ public class Basket {
         }
     }
 
-    public void emptyBasket() {
+    public void clearBasket() {
         content.clear();
     }
 
