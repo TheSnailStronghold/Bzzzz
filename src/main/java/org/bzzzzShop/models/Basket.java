@@ -39,7 +39,7 @@ public class Basket {
             if(content.put(product, content.get(product) - amount) == amount){
                 content.remove(product);
             }
-            contentNumber--;
+            contentNumber -= amount;
         }else{
             throw new IllegalArgumentException("Указанного товара нет в корзине");
         }
