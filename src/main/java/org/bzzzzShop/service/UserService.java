@@ -18,11 +18,11 @@ public class UserService {
         * регистрируем */
         return customerSet.add(customer);
     }
-    public Customer findCustomerByUsername(String username) {
+    public Customer findByLogin(String login) {
         Customer a = null;
         try {
             a = customerSet.stream()
-                    .filter(c -> c.getUsername().equals(username))
+                    .filter(c -> c.getAccount().getLogin().equals(login))
                     .findFirst()
                     .get();
         } catch (NoSuchElementException ignored) { }
