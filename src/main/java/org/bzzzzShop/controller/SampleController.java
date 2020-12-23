@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class SampleController {
 
@@ -66,14 +68,38 @@ public class SampleController {
         else
             return new ResponseEntity<>("Not find.",HttpStatus.NOT_FOUND);
     }
-    /*  Про товары */
-    @GetMapping("/getGoodsByArticle/{article}")
-    public ResponseEntity<String> getGoodsByArticle(@PathVariable String article) {
 
-        Goods goods = serviceWorker.getGoodsByArticle(article);
-        if (goods != null)
-            return new ResponseEntity<>(goods.toString(), HttpStatus.OK);
+    /* Про товары */
+
+    @GetMapping("/findGoodsByArticle/{article}")
+    public ResponseEntity<String> findGoodsByArticle(@PathVariable String article) {
+
+        Goods goods = serviceWorker.findGoodsByArticle(article);
+        if (goods != null) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Товары по артикулу " + article + ":\n\n\n");
+            builder.append(goods.toString());
+            return new ResponseEntity<>(builder.toString(), HttpStatus.OK);
+        }
         else
-            return new ResponseEntity<>("Not find.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("К сожалению, товары по артикулу " + article + " не найдены.", HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/findGoodsByName/{name}")
+    public ResponseEntity<String> findGoodsByName(@PathVariable String name) {
+
+        List<Goods> goods = serviceWorker.getGoodsByName(name.toUpperCase());
+        if (goods != null) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Товары по запросу '" + name + "':\n\n\n");
+            for (Goods item: goods){
+                builder.append(item.toString() +
+                        "\n\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+" +
+                        "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\n");
+            }
+            return new ResponseEntity<>(builder.toString(), HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>("К сожалению, товары по запросу '" + name + "' не найдены.", HttpStatus.NOT_FOUND);
     }
 }
