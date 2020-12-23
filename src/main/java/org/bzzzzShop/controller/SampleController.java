@@ -1,11 +1,10 @@
 package org.bzzzzShop.controller;
 
+import org.bzzzzShop.models.Goods;
+import org.bzzzzShop.models.customer.Account;
+import org.bzzzzShop.models.customer.Customer;
 import org.bzzzzShop.service.ServiceWorker;
 import org.bzzzzShop.service.UserService;
-import org.bzzzzShop.dto.BasketDTO;
-import org.bzzzzShop.models.Basket;
-import org.bzzzzShop.models.customer.Customer;
-import org.bzzzzShop.models.Goods;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,6 @@ public class SampleController {
     private ServiceWorker serviceWorker = new ServiceWorker();
     /* Сервис для работы с пользователями */
     private UserService userService = new UserService();
-
-    @PostMapping("/addToCart")
-    public Basket addToBasket(@RequestBody BasketDTO basketDTO) {
-
-        return null;
-    }
 
     @GetMapping("/main")
     public String mainPage() {
@@ -50,21 +43,24 @@ public class SampleController {
     }
 
     @PostMapping("/changeUser")
-    public String changeUser(@RequestBody Customer customer) {
-        /*
-            Блин, а ещё ведь надо проверять, существует ли вообще такой пользователь.
-        */
-        /* Проверить equals*/
-//        if (customer.equals(userService.getActiveCustomer())) {
-//            userService.setActiveCustomer(customer);
-            return "Вы переключились на пользователя " + customer.getUsername() + "\n";
-//        }
-//        else return "Этот пользователь уже выбран.";
+    public String changeUser(@RequestBody Account account) {
+        if (!account.equals(userService.getActiveCustomer())) {
+            Customer customer = userService.findByLogin(account.getLogin());
+            if (customer != null) {
+                userService.setActiveCustomer(customer);
+                return "Вы переключились на пользователя '" + customer.getUsername() + "'\n";
+            }
+            else
+                return String.format("Пользователя с логином '%s' не существует",
+                        account.getLogin());
+        }
+        else
+            return "Этот пользователь уже выбран.";
     }
 
     @GetMapping("/findBuyer/{username}")
     public ResponseEntity<String> findBuyer(@PathVariable String username) {
-        Customer customer = userService.findCustomerByUsername(username);
+        Customer customer = userService.findByLogin(username);
         if (customer != null)
             return new ResponseEntity<>(customer.toString(), HttpStatus.OK);
         else

@@ -6,15 +6,19 @@ import java.util.Objects;
 /*Покупатель*/
 public class Customer {
     private String username;
+    private Account account;
     private String phoneNumber;
     private String email;
-    private Account customerAcc;
 
     public Customer(String login, String password, String username, String phoneNumber, String email) {
-        customerAcc = new Account(login, password);
+        account = new Account(login, password);
         this.username = username;
         this.phoneNumber = phoneNumber;
         this.email = email;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     @Override
@@ -22,18 +26,18 @@ public class Customer {
         if (this == o) return true;
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
-        return customerAcc.equals(customer.customerAcc);
+        return account.equals(customer.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerAcc);
+        return Objects.hash(account);
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(customerAcc.toString());         //вывод информации об учетной записи
+        str.append(account.toString());         //вывод информации об учетной записи
         str.append(String.format("Имя пользователя: %s\n" +
                         "Номер телфона: %s\n" +
                         "E-mail: %s\n",

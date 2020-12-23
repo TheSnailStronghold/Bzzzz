@@ -2,7 +2,9 @@ package org.bzzzzShop.service;
 
 import org.bzzzzShop.models.customer.Customer;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class UserService {
 
@@ -16,11 +18,11 @@ public class UserService {
         * регистрируем */
         return customerSet.add(customer);
     }
-    public Customer findCustomerByUsername(String username) {
+    public Customer findByLogin(String login) {
         Customer a = null;
         try {
             a = customerSet.stream()
-                    .filter(c -> c.getUsername().equals(username))
+                    .filter(c -> c.getAccount().getLogin().equals(login))
                     .findFirst()
                     .get();
         } catch (NoSuchElementException ignored) { }
