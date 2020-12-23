@@ -330,6 +330,17 @@ public class ServiceWorker {
         );
     }
 
+    public Goods findGoodsByArticle(String article) {
+        Goods goods = null;
+        try {
+            goods = products.stream()
+                    .filter(p -> p.getArticle().equals(article))
+                    .findFirst()
+                    .get();
+        } catch (NoSuchElementException ignored ){}
+        return goods;
+    }
+
     public List<Goods> getGoodsByName(String name) {
         List<Goods> goods = null;
         try {

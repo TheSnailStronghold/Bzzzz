@@ -70,6 +70,21 @@ public class SampleController {
     }
 
     /* Про товары */
+
+    @GetMapping("/findGoodsByArticle/{article}")
+    public ResponseEntity<String> findGoodsByArticle(@PathVariable String article) {
+
+        Goods goods = serviceWorker.findGoodsByArticle(article);
+        if (goods != null) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Товары по артикулу " + article + ":\n\n\n");
+            builder.append(goods.toString());
+            return new ResponseEntity<>(builder.toString(), HttpStatus.OK);
+        }
+        else
+            return new ResponseEntity<>("К сожалению, товары по артикулу " + article + " не найдены.", HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping("/findGoodsByName/{name}")
     public ResponseEntity<String> findGoodsByName(@PathVariable String name) {
 
