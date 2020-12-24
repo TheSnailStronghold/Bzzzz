@@ -3,6 +3,7 @@ package org.bzzzzShop.controller;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.customer.Account;
 import org.bzzzzShop.models.customer.Customer;
+import org.bzzzzShop.models.order.Order;
 import org.bzzzzShop.service.BasketService;
 import org.bzzzzShop.service.ServiceWorker;
 import org.bzzzzShop.service.UserService;
@@ -11,7 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @RestController
 public class SampleController {
@@ -65,14 +67,14 @@ public class SampleController {
             return "Этот пользователь уже выбран.";
     }
 
-    @GetMapping("/findBuyer/{login}")
+    /*@GetMapping("/findBuyer/{login}")
     public ResponseEntity<String> findBuyer(@PathVariable String login) {
         Customer customer = userService.findByLogin(login);
         if (customer != null)
             return new ResponseEntity<>(customer.toString(), HttpStatus.OK);
         else
             return new ResponseEntity<>("Not find.",HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     /* Про товары */
 
@@ -106,5 +108,23 @@ public class SampleController {
         }
         else
             return new ResponseEntity<>("К сожалению, товары по запросу '" + name + "' не найдены.", HttpStatus.NOT_FOUND);
+    }
+
+    /* Про заказ */
+    @GetMapping("/order/{uuid}")
+    public String findOrder(@PathVariable UUID uuid) {
+        /*Дебильная реализация*/
+        Order order = null;
+        try {
+            order = userService.getCustomerSet().stream()
+                    .filter(c->c.getOrderByUUID(uuid) != null)
+                    .findFirst()
+                    .get()
+                    .getOrderByUUID(uuid);
+        } catch (NoSuchElementException ignored) {}
+        return order != null ?
+                order.toString()
+                :
+                "Такого заказа не существует.";
     }
 }

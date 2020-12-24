@@ -46,7 +46,7 @@ public final class BasketService {
     }
     public void dropGoodsFromBasket(Customer customer, Goods goods) {
         if (!baskets.containsKey(customer))
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("Создание корзины для несуществующего покупателя");
         baskets.get(customer).dropGoods(goods);
     }
     public void setAmountOfGoods(Customer customer, Goods goods, int amount){
