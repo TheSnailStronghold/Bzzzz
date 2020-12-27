@@ -3,6 +3,8 @@ package org.bzzzzShop.controller;
 import org.bzzzzShop.models.Goods;
 import org.bzzzzShop.models.customer.Account;
 import org.bzzzzShop.models.customer.Customer;
+import org.bzzzzShop.models.order.Order;
+import org.bzzzzShop.service.BasketService;
 import org.bzzzzShop.service.ServiceWorker;
 import org.bzzzzShop.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -10,14 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @RestController
 public class SampleController {
 
     /* Сервис для работы с товарами */
-    private ServiceWorker serviceWorker = new ServiceWorker();
+    private ServiceWorker serviceWorker = ServiceWorker.getInstance();
     /* Сервис для работы с пользователями */
-    private UserService userService = new UserService();
+    private UserService userService = UserService.getInstance();
+
+    private BasketService basketService = BasketService.getInstance();
 
     @GetMapping("/main")
     public String mainPage() {
@@ -38,7 +44,8 @@ public class SampleController {
     public ResponseEntity<String> addBuyer(@RequestBody Customer customer) {
         if (userService.addCustomer(customer)) {
             userService.setActiveCustomer(customer);
-            return new ResponseEntity<>(String.format("Пользователь '%s' успешно разеригстрирован.\n", customer.getUsername()), HttpStatus.CREATED);
+            basketService.getBasketFromCustomer(customer);
+            return new ResponseEntity<>(String.format("Пользователь '%s' успешно зарегистрирован .\n", customer.getUsername()), HttpStatus.CREATED);
         }
         else
             return new ResponseEntity<>(String.format("Пользователь с именем '%s' уже существует.\n", customer.getUsername()) ,HttpStatus.UNAUTHORIZED);
@@ -60,14 +67,14 @@ public class SampleController {
             return "Этот пользователь уже выбран.";
     }
 
-    @GetMapping("/findBuyer/{username}")
-    public ResponseEntity<String> findBuyer(@PathVariable String username) {
-        Customer customer = userService.findByLogin(username);
+    /*@GetMapping("/findBuyer/{login}")
+    public ResponseEntity<String> findBuyer(@PathVariable String login) {
+        Customer customer = userService.findByLogin(login);
         if (customer != null)
             return new ResponseEntity<>(customer.toString(), HttpStatus.OK);
         else
             return new ResponseEntity<>("Not find.",HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     /* Про товары */
 
@@ -101,5 +108,23 @@ public class SampleController {
         }
         else
             return new ResponseEntity<>("К сожалению, товары по запросу '" + name + "' не найдены.", HttpStatus.NOT_FOUND);
+    }
+
+    /* Про заказ */
+    @GetMapping("/order/{uuid}")
+    public String findOrder(@PathVariable UUID uuid) {
+        /*Дебильная реализация*/
+        Order order = null;
+        try {
+            order = userService.getCustomerSet().stream()
+                    .filter(c->c.getOrderByUUID(uuid) != null)
+                    .findFirst()
+                    .get()
+                    .getOrderByUUID(uuid);
+        } catch (NoSuchElementException ignored) {}
+        return order != null ?
+                order.toString()
+                :
+                "Такого заказа не существует.";
     }
 }

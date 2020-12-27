@@ -8,6 +8,10 @@ public class Address {
     private String flat;
 
     /* Конструктор для частного дома */
+
+    public Address() {
+    }
+
     public Address(String country, String city, String street, String house)
     {
         this.country = country;

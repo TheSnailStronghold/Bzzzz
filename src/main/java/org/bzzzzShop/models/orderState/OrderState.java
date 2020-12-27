@@ -4,6 +4,7 @@ package org.bzzzzShop.models.orderState;
 public enum OrderState {
 
     ACCEPTED("заказ принят"),
+
     GATHERING_ITEMS("сбор заказа"),
     IN_TRANSFER("передан в службу доставки"),
     DELIVERED_TO_PICK_UP_POINT("доставлен в пункт выдачи"),
